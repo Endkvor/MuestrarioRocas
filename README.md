@@ -1,0 +1,8 @@
+-Pagina Web elaborada con REACT 
+-Esta pagina web esta basada en https://ptable.com/?lang=es#Propiedades
+-La pagina debe obtener la informacion de entrada proveniente de un excel , se puede convertir en csv
+-La pagina debe renderizar del lado derecho los nombres sin repetir  en pequeños cuadros
+-al hacer hover sobre un cuadro debe  de mostrar en el cuadro grande sus propiedades
+-el cuadro grande muestra la primer imagen , nombre, utilidad y tipo
+-el cuadro de la derecha tiene un link  que lleva a la galeria de muestras de esa roca.
+-los objetos a renderizar se deberan filtrar por tipo, o por nombre.
