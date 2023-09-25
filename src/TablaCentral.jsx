@@ -6,9 +6,7 @@ export const TablaCentral = (objeto) => {
         const nombre = objeto.muestra.split(' ')[0];        
     }
     const nombre = objeto.muestra.split(' ')[0];
-    /*  const smallContainer= document.querySelector('small-container')
-     let randomColor = Math.floor(Math.random()*16777215).toString(16);
-     smallContainer.style.backgroundColor = "#" + randomColor; */
+    
     const [hoveredNombre, setHoveredNombre] = useState('');
 
     const handleMouseEnter = () => {
@@ -34,8 +32,8 @@ export const TablaCentral = (objeto) => {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 onClick={handleClick}
-            >
-                <p className="small-title" >{nombre}</p>
+            ><p className="small-title">{`${objeto.numero+1}`}</p>
+                <p className="small-title" >{`${nombre}`}</p>
             </div>
         </div>
     )

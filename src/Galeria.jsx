@@ -16,17 +16,18 @@ export const Galeria = () => {
 
 
     const imagenesRender = imagenesArray.map((url, index) => (
-        <figure key={index}>
+        <figure className="figura" key={index}>
             {console.log(`${rutaBase}${url}`)}
             <img src={`${rutaBase}${url}`} alt={`Imagen ${index}`} />
             <figcaption>{nombresArray[index]}</figcaption>
+            
         </figure>
     ));
 
     return (
         <div className="galeria/container">
             <NavBarGal />
-            <h1>Muestras.</h1>
+            <h1 className='title-galeria'>Muestras.</h1>
             <div className="galeria-images">                
                 {imagenesRender}
             </div>

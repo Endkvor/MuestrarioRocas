@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { ElementoGrande } from './ElementoGrande.jsx'
 import { NavBar } from './NavBar.jsx'
@@ -44,11 +45,11 @@ export function MainPage() {
     }, []);
 
     //console.log(contIDs)
-    console.log(csvData)
+    //  console.log(csvData)
     const csvDataId = [];
     let contIDs = 1;
     for (let index = 0; index < csvData.length; index++) {
-        console.log(csvData[index].Id)
+        //console.log(csvData[index].Id)
         if (csvData[index].Id == contIDs) {
             csvDataId.push(
                 csvData[index]
@@ -57,32 +58,45 @@ export function MainPage() {
         }
     }
     //Creamos los elementos a renderizar
+    //Nota aqui debemos recibir los datos de navbar 
+    const [csvFiltrado, setCsvFiltrado] = useState('');
+    const handleInputChange = (e) => {
+        console.log(e)
+        setCsvFiltrado(e);
+        
+    };
+    
+    let elementosSeleccionados = csvDataId;
+    if (csvFiltrado !== '') {
+        elementosSeleccionados = csvDataId.filter(item => item.Muestra.toLowerCase().includes(csvFiltrado.toLowerCase()));
+    }
+
+
     const elementosCentrales = [];
-    for (let index = 0; index < csvDataId.length; index++) {
+    for (let index = 0; index < elementosSeleccionados.length; index++) {
         elementosCentrales.push(
             <TablaCentral
                 onClick={handleTableClick}
                 key={index}
+                numero={index}
                 bdCompleta={csvData}
-                muestra={csvDataId[index].Muestra}
-                localidad={csvDataId[index].Localidad}
-                utilidad={csvDataId[index].Utilidad}
-                donador={csvDataId[index].Donador}
-                imagen={csvDataId[index].URL}
-                tipo={csvDataId[index].Tipo}
-                idRoca={csvDataId[index].Id}
+                muestra={elementosSeleccionados[index].Muestra}
+                localidad={elementosSeleccionados[index].Localidad}
+                utilidad={elementosSeleccionados[index].Utilidad}
+                donador={elementosSeleccionados[index].Donador}
+                imagen={elementosSeleccionados[index].URL}
+                tipo={elementosSeleccionados[index].Tipo}
+                idRoca={elementosSeleccionados[index].Id}
             />
         )
     }
-    console.log(`Propiedades a poner en Elementogrande ${clickedProps}`)
+    //    console.log(`Propiedades a poner en Elementogrande ${clickedProps}`)
 
     return (
 
         <div>
-            <>{console.log(csvData)}</>
-            <NavBar />
-
-
+            <>{/*console.log(csvData)*/}</>
+            <NavBar onInputChange={handleInputChange} />
 
             <div className='content-container'>
                 {clickedProps && !elementoGrandeRenderizado && (<ElementoGrande {...clickedProps} />)
@@ -93,7 +107,7 @@ export function MainPage() {
 
                 {
 
-                    csvData.length > 0 && !elementoGrandeRenderizado ? (
+                    csvData.length > 0 && !clickedProps ? (
                         <ElementoGrande
                             bdCompleta={csvData}
                             muestra={csvData[defaultIndex].Muestra}

@@ -2,7 +2,7 @@ import{useState}from 'react';
 import { Link } from 'react-router-dom';
 
 export const ElementoGrande = (objeto) => {
-    console.log(objeto)
+    //console.log(objeto)
     const imagenesArrayURL=[]
     const namesArray=[]
     for(let index=0;index<objeto.bdCompleta.length;index ++){
